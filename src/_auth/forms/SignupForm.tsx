@@ -1,5 +1,5 @@
 
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 import { useForm } from "react-hook-form"
@@ -9,6 +9,7 @@ import { z } from "zod"
 import Loader from "@/components/shared/Loader"
 
 import { Link } from 'react-router-dom'
+import { CreateUserAccount } from "@/lib/appwrite/api"
 
 
 const SignupForm = () => {
@@ -19,19 +20,23 @@ const SignupForm = () => {
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
-      username: "",
+      name: '',
+      username: '',
+      email: '',
+      password: ''
     },
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof SignupValidation>) {
+  async function onSubmit(values: z.infer<typeof SignupValidation>) {
     // 3. create new user
+    const newUser = await CreateUserAccount(values)
 
+    console.log(newUser);
   }
 
   return (
     <Form {...form}>
-
       <div className="sm:w-420 flex-center flex-col">
         <img src="assets/images/logo.svg" alt="" />
 
@@ -69,12 +74,12 @@ const SignupForm = () => {
 
           <FormField
             control={form.control}
-            name="username"
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="shad-form_label">Email</FormLabel>
                 <FormControl>
-                  <Input type="email" className="shad-input" {...field} />
+                  <Input type="text" className="shad-input" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -83,10 +88,10 @@ const SignupForm = () => {
 
           <FormField
             control={form.control}
-            name="username"
+            name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>Password</FormLabel>
                 <FormControl>
                   <Input type="password" className="shad-input"{...field} />
                 </FormControl>
@@ -108,7 +113,6 @@ const SignupForm = () => {
             Already have an account?
             <Link to={'/sign-in'} className="text-primary-500 text-small-semibold ml-1">Sign In</Link>
           </p>
-
         </form>
       </div>
     </Form>
