@@ -2,6 +2,7 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
+import { useToast } from "@/components/ui/use-toast"
 import { useForm } from "react-hook-form"
 import { SignupValidation } from "@/lib/validations"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -13,7 +14,7 @@ import { CreateUserAccount } from "@/lib/appwrite/api"
 
 
 const SignupForm = () => {
-
+  const { toast } = useToast()
   const isLoading = false;
 
   // 1. Define your form.
@@ -32,7 +33,12 @@ const SignupForm = () => {
     // 3. create new user
     const newUser = await CreateUserAccount(values)
 
-    console.log(newUser);
+    if (!newUser) {
+      toast({
+        title: "Sign up failed, please try again.",
+      })
+    }
+
   }
 
   return (
