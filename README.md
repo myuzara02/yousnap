@@ -1,30 +1,77 @@
-# React + TypeScript + Vite
+# Yousnap (under construction :building_construction:)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Yousnap is a social platform project inspired by Instagram. It provides a platform for users to share photos, connect with friends, and explore a visual feed of content.
+## Table of Contents
 
-Currently, two official plugins are available:
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started with Yousnap, follow these steps:
 
-## Expanding the ESLint configuration
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/myuzara02/yousnap.git
+   
+2. Navigate to the Project directory:
+   ```bash
+   cd yousnap
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+3. Install dependencies:
+    ```bash
+    npm install
 
-- Configure the top-level `parserOptions` property like this:
+4. Configure the environment:
+Edit the **.env.local** file in the root directory and add the necessary environment variables (database connection, etc.).
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+5. Start the application:
+    ```bash
+    npm start dev
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Features
+
+### 1. User Authentication
+Yousnap implements secure user authentication to ensure a personalized experience for each user.
+
+### 2. Profile Management
+Users can create and manage their profiles, including updating profile pictures, bios, and other information.
+
+### 3. Photo Sharing
+Yousnap allows users to upload and share photos with their followers.
+
+### 4. Feed Exploration
+Users can explore a visual feed of content, including posts from their followers and popular content on the platform.
+
+### 5. Likes and Saved Posts
+Users can engage with content by liking photos, and save posts for later viewing.
+
+### 6. Direct Messaging
+Yousnap includes a direct messaging feature for private communication between users.
+
+
+## Usage
+
+1. Register for a new account or log in with existing credentials.
+2. Explore the platform by viewing the feed, searching for users, and engaging with content.
+3. Share your own photos and updates with followers.
+4. Connect with friends and build your social network.
+
+
+
+## Contributing
+
+We welcome contributions to Yousnap! If you'd like to contribute, please follow these guidelines:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and submit a pull request.
+
+For major changes, please open an issue first to discuss the proposed changes.
+
+
+## License
+
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
