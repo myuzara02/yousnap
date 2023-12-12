@@ -13,6 +13,7 @@ import { Models } from "appwrite"
 import { useUserContext } from "@/context/AuthContext"
 import { toast, useToast } from "../ui/use-toast"
 import { useNavigate } from "react-router-dom"
+import { useCreatePost } from "@/lib/react-query/queriesAndMutations"
 
 
 
@@ -39,7 +40,7 @@ const PostForm = ({ post }: PostFormProps) => {
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof PostValidation>) {
+    async function onSubmit(values: z.infer<typeof PostValidation>) {
         const newPost = await createPost({
             ...values,
             userId: user.id
@@ -47,7 +48,7 @@ const PostForm = ({ post }: PostFormProps) => {
 
         if (!newPost) {
             toast({
-                title: "Please try again.";
+                title: "Please try again."
             })
         }
 
@@ -67,7 +68,7 @@ const PostForm = ({ post }: PostFormProps) => {
                         <FormItem>
                             <FormLabel className="shad-form_label">Caption</FormLabel>
                             <FormControl>
-                                <Textarea placeholder="shadcn" className="shad-textarea custom-scrollbar" {...field} />
+                                <Textarea placeholder="Add caption" className="shad-textarea custom-scrollbar" {...field} />
                             </FormControl>
                             <FormMessage className="shad-form_message" />
                         </FormItem>
