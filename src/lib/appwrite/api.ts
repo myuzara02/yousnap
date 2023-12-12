@@ -1,6 +1,7 @@
-import { INewUser } from "@/types";
+import { INewPost, INewUser } from "@/types";
 import { ID, Query } from "appwrite";
-import { account, appwriteConfig, avatars, databases } from "./config";
+import { account, appwriteConfig, avatars, databases, storage } from "./config";
+import { error } from "console";
 
 export async function createUserAccount(user: INewUser) {
     try {
@@ -95,6 +96,71 @@ export async function signOutAccount() {
         const session = await account.deleteSession("current");
 
         return session;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// ========== Post API ==========
+
+// ========== Create Post
+export async function createPost(post: INewPost) {
+    try {
+        // Upload file to storage
+        const uploadedFile = await uploadFile(post.file[0])
+
+        if (!uploadFile) throw Error
+
+        // get file url
+        const fileUrl = getFilePreview(uploadedFile.$id)
+        if (!fileUrl) {
+            await deleteFile(uploadedFile.$id)
+            throw Error
+        }
+
+        // convert tags into array
+        const tags = post.tags?.replace(/ /g, "").split(",") || []
+
+        // create post
+        const newPost = await databases.createDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId,
+            ID.unique(),
+
+            {
+                creator: post.userId,
+                caption: post.caption,
+                imageUrl: fileUrl,
+                imageId: uploadedFile.$id,
+                location: post.location,
+                tags: tags
+            }
+        )
+
+        if (!newPost) {
+            await deleteFile(uploadedFile.$id)
+            throw Error
+        }
+
+        return newPost;
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+// ========== UPLOAD FILE
+export async function uploadFile(file: File) {
+    try {
+        const uploadedFile = await storage.createFile(
+            appwriteConfig.storageId,
+            ID.unique(),
+            file
+        )
+
+        return uploadedFile
+
     } catch (error) {
         console.log(error);
     }
