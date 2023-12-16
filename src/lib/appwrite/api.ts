@@ -347,20 +347,22 @@ export async function likePost(postId: string, likesArray: string[]) {
       appwriteConfig.postCollectionId,
       postId,
       {
-        likes: likesArray,
+        likes: likesArray
       }
-    );
+    )
 
-    if (!updatedPost) throw Error;
+    if (!updatedPost) throw Error
 
-    return updatedPost;
+    return updatedPost
+
   } catch (error) {
     console.log(error);
+
   }
 }
 
 // ============================== SAVE POST
-export async function savePost(userId: string, postId: string) {
+export async function savePost(postId: string, userId: string) {
   try {
     const updatedPost = await databases.createDocument(
       appwriteConfig.databaseId,
@@ -368,34 +370,36 @@ export async function savePost(userId: string, postId: string) {
       ID.unique(),
       {
         user: userId,
-        post: postId,
+        post: postId
       }
-    );
+    )
 
-    if (!updatedPost) throw Error;
+    if (!updatePost) throw Error
 
-    return updatedPost;
+    return updatedPost
   } catch (error) {
     console.log(error);
+
   }
 }
+
 // ============================== DELETE SAVED POST
 export async function deleteSavedPost(savedRecordId: string) {
   try {
-    const statusCode = await databases.deleteDocument(
+    const statusCode = databases.deleteDocument(
       appwriteConfig.databaseId,
       appwriteConfig.savesCollectionId,
       savedRecordId
-    );
+    )
 
-    if (!statusCode) throw Error;
+    if (!statusCode) throw Error
 
-    return { status: "Ok" };
+    return { status: 'ok' }
   } catch (error) {
     console.log(error);
+
   }
 }
-
 // ============================== GET USER'S POST
 export async function getUserPosts(userId?: string) {
   if (!userId) return;
