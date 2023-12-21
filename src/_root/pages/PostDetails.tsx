@@ -39,12 +39,13 @@ const PostDetails = () => {
                                         {post?.creator.name}
                                     </p>
 
-                                    <div className="flex-center gap-2 text-light-3">
-                                        <p className="subtle-semibold lg:small-regular">
+                                    <div className="flex items-center gap-2 text-light-3">
+                                        <p className="subtle-semibold lg:small">
                                             {formatDateString(post?.$createdAt)}
+
                                         </p>
                                         -
-                                        <p className="subtle-semibold lg:small-regular">
+                                        <p className="subtle-semibold lg:small">
                                             {post?.location}
                                         </p>
                                     </div>
@@ -56,8 +57,8 @@ const PostDetails = () => {
                                     <img
                                         src="/assets/icons/edit.svg"
                                         alt="edit"
-                                        height={24}
-                                        width={24}
+                                        height={19}
+                                        width={19}
                                     />
                                 </Link>
 
@@ -69,8 +70,8 @@ const PostDetails = () => {
                                     <img
                                         src="/assets/icons/delete.svg"
                                         alt="delete"
-                                        height={25}
-                                        width={25}
+                                        height={20}
+                                        width={20}
                                     />
                                 </Button>
                             </div>

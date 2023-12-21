@@ -30,7 +30,7 @@ const PostCard = ({ post }: PostCardProps) => {
                             {post.creator.name}
                         </p>
 
-                        <div className="flex-center gap-2 text-light-3">
+                        <div className="flex items-center gap-2 text-light-3">
                             <p className="subtle-semibold lg:small-regular">
                                 {formatDateString(post.$createdAt)}
                             </p>

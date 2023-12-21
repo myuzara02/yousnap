@@ -22,7 +22,7 @@ export function formatDateString(dateString: string) {
     minute: "2-digit",
   });
 
-  return `${formattedDate} at ${time}`;
+  return `${formattedDate}`;
 }
 
 // 
