@@ -10,6 +10,7 @@ import { INewPost, INewUser, IUpdatePost } from '@/types'
 import { QUERY_KEYS } from './queryKeys';
 import { string } from 'zod';
 
+
 // ========= User
 
 export const useCreateUserAccount = () => {
