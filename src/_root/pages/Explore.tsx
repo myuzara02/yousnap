@@ -11,7 +11,7 @@ const Explore = () => {
   const { data: posts, fetchNextPage, hasNextPage } = useGetPosts()
   const [searchValue, setSearchValue] = useState('')
   const debounceValue = useDebounce(searchValue, 500)
-  const { data: searchedPost, isFetching: isSearchFetching } = useSearchPost(debounceValue)
+  const { data: searchedPosts, isFetching: isSearchFetching } = useSearchPost(debounceValue)
 
   console.log(posts);
 
@@ -25,7 +25,7 @@ const Explore = () => {
   }
 
   const shouldShowSearchResult = searchValue !== ''
-  const shouldShowPosts = !shouldShowSearchResult && posts?.pages.every((item) => item.documents.length === 0)
+  const shouldShowPosts = !shouldShowSearchResult && posts?.pages.every((item) => item?.documents.length === 0)
 
 
   // ========== UI Render ===========
@@ -66,7 +66,10 @@ const Explore = () => {
 
       <div className="flex flex-wrap gap-9 w-full max-w-5xl">
         {shouldShowSearchResult ? (
-          <SearchResult />
+          <SearchResult
+            isSearchingFetching={isSearchFetching}
+            searchedPosts={searchedPosts}
+          />
         ) : shouldShowPosts ? (
           <p className="text-light-4 mt-10 text-center w-full">End of posts</p>
         ) : (
@@ -74,7 +77,6 @@ const Explore = () => {
             <GridPostList key={`page-${index}`} posts={item.documents} />
           ))
         )
-
         }
       </div>
     </div>
