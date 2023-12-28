@@ -3,13 +3,12 @@ import PostStats from "@/components/shared/PostStats"
 import { Button } from "@/components/ui/button"
 import { useUserContext } from "@/context/AuthContext"
 import { useGetPostById } from "@/lib/react-query/queriesAndMutations"
-import { formatDateString } from "@/lib/utils"
-import { Ghost } from "lucide-react"
+import { formatDateString, multiFormatDateString } from "@/lib/utils"
 import { Link, useParams } from "react-router-dom"
 
 const PostDetails = () => {
     const { id } = useParams()
-    const { data: post, isPending } = useGetPostById(id || '')
+    const { data: post, isPending } = useGetPostById(id || " ")
     const { user } = useUserContext()
 
     const handleDeletePost = () => { }
@@ -41,7 +40,7 @@ const PostDetails = () => {
 
                                     <div className="flex items-center gap-2 text-light-3">
                                         <p className="subtle-semibold lg:small">
-                                            {formatDateString(post?.$createdAt)}
+                                            {multiFormatDateString(post?.$createdAt)}
 
                                         </p>
                                         -
