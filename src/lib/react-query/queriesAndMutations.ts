@@ -183,9 +183,10 @@ export const useSearchPost = (searchTerm: string) => {
 export const useGetUsers = (limit?: number) => {
     return useQuery({
         queryKey: [QUERY_KEYS.GET_USERS],
-        queryFn: () => getUsers(limit)
-    })
-}
+        queryFn: () => getUsers(limit),
+    });
+};
+
 
 export const useGetUserById = (userId: string) => {
     return useQuery({
