@@ -104,7 +104,7 @@ export async function signOutAccount() {
   }
 }
 
-export async function getUsers(limit: number) {
+export async function getUsers(limit?: number) {
   const queries: any[] = [Query.orderDesc(`$createdAt`)]
 
   if (limit) {
