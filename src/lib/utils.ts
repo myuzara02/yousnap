@@ -17,11 +17,6 @@ export function formatDateString(dateString: string) {
   const date = new Date(dateString);
   const formattedDate = date.toLocaleDateString("en-US", options);
 
-  const time = date.toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-
   return `${formattedDate}`;
 }
 

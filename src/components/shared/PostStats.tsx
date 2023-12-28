@@ -1,4 +1,3 @@
-import { useUserContext } from "@/context/AuthContext"
 import { useDeleteSavedPost, useGetCurrentUser, useLikePost, useSavePost } from "@/lib/react-query/queriesAndMutations"
 import { checkIsLiked } from "@/lib/utils"
 import { Models } from "appwrite"
@@ -18,7 +17,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
 
     const { mutate: likePost } = useLikePost()
     const { mutate: savePost, isPending: isSavingPost } = useSavePost()
-    const { mutate: deleteSavedPost, isPending: isDeletingSavedPost } = useDeleteSavedPost()
+    const { mutate: deleteSavedPost } = useDeleteSavedPost()
 
     const { data: currentUser } = useGetCurrentUser()
 
