@@ -171,13 +171,13 @@ export const useGetPosts = () => {
     });
 };
 
-export const useSearchPost = (searchTerm: string) => {
+export const useSearchPosts = (searchTerm: string) => {
     return useQuery({
         queryKey: [QUERY_KEYS.SEARCH_POSTS, searchTerm],
         queryFn: () => searchPosts(searchTerm),
-        enabled: !!searchTerm
-    })
-}
+        enabled: !!searchTerm,
+    });
+};
 
 export const useGetUsers = (limit?: number) => {
     return useQuery({
