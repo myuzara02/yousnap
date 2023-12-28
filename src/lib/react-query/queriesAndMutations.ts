@@ -8,7 +8,6 @@ import {
 import { createPost, createUserAccount, deletePost, deleteSavedPost, getCurrentUser, getInfinitePosts, getPostById, getRecentPosts, getUserById, getUsers, likePost, savePost, searchPosts, signInAccount, signOutAccount, updatePost } from '../appwrite/api'
 import { INewPost, INewUser, IUpdatePost } from '@/types'
 import { QUERY_KEYS } from './queryKeys';
-import { string } from 'zod';
 
 
 // ========= User
@@ -165,7 +164,7 @@ export const useGetPosts = () => {
         getNextPageParam: (lastPage) => {
             if (lastPage && lastPage.documents.length === 0) return null;
 
-            const lastId = lastPage.documents[lastPage?.documents.length - 1].$id;
+            const lastId = lastPage?.documents[lastPage?.documents.length - 1].$id;
 
             return lastId;
         },
