@@ -1,4 +1,4 @@
-# Yousnap (under construction :building_construction:)
+# Yousnap
 
 Yousnap is a social platform project inspired by Instagram. It provides a platform for users to share photos, connect with friends, and explore a visual feed of content.
 ## Table of Contents
